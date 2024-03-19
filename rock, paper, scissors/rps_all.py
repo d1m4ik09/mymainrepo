@@ -13,6 +13,7 @@ def game_win():
         global balance
 
         comp_choice = choice(choice_pos)
+        lbl_per_choice.config(text= user_choice)
         lbl_comp_choice.config(text = comp_choice)
 
         if user_choice == comp_choice:
@@ -24,23 +25,21 @@ def game_win():
             lbl_score.config(text = (str(score_per) + ':' + str(score_comp)),
                             bg = '#008000')
             lbl_balance.config(text = ('Баланс', balance))
-            print(stavka, balance)
         else:
             score_comp += 1
             balance -= stavka
             lbl_score.config(text = (str(score_per) + ':' + str(score_comp)),
                             bg = '#B22222')
-            
-            if stavka > balance:
-                stavka == balance
-                lbl_stavka.config(text = ('Ставка', stavka))
-                print(stavka, balance)
+              
+        if stavka > balance:
+            stavka = balance
+            lbl_stavka.config(text = ('Ставка', stavka))
 
-            if balance > 0:
-                lbl_balance.config(text = ('Баланс', balance))
-            else:
-                balance == 100000
-                stop()
+        if balance > 0:
+            lbl_balance.config(text = ('Баланс', balance))
+        else:
+            balance = 100000
+            stop()
 
     def rock():
         per_choice('Камень')
@@ -67,21 +66,26 @@ def game_win():
     
     window_game = Tk()
     window_game.title('Камень, ножницы, бумага')
-    window_game.iconbitmap('D:/программирование/rock, paper, scissors/pictures/icon.png')
+    # window_game.iconbitmap('D:/программирование/rock, paper, scissors/pictures/icon.png')
+    window_game.iconbitmap('C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/icon.png')
     window_game.configure(bg = '#B0E0E6',
                         )
     window_game.geometry('900x750+10+20')
     window_game.resizable(False, False)
 
-    rock_image_1 = PhotoImage(file = 'D:/программирование/rock, paper, scissors/pictures/rock.png')
-    paper_image_1 = PhotoImage(file = 'D:/программирование/rock, paper, scissors/pictures/paper.png')
-    scissors_image_1 = PhotoImage(file = 'D:/программирование/rock, paper, scissors/pictures/scissors.png')
+    # rock_image_1 = PhotoImage(file = 'D:/программирование/rock, paper, scissors/pictures/rock.png')
+    rock_image_1 = PhotoImage(file = 'C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/rock.png')
+    # paper_image_1 = PhotoImage(file = 'D:/программирование/rock, paper, scissors/pictures/paper.png')
+    paper_image_1 = PhotoImage(file = 'C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/paper.png')
+    # scissors_image_1 = PhotoImage(file = 'D:/программирование/rock, paper, scissors/pictures/scissors.png')
+    scissors_image_1 = PhotoImage(file = 'C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/scissors.png')
 
     rock_image_2 = PhotoImage(file = '')
     paper_image_2 = PhotoImage(file = '')
     scissors_image_2 = PhotoImage(file = '')
     
-    shop_image = PhotoImage(file = 'D:/программирование/rock, paper, scissors/pictures/shop.png')
+    # shop_image = PhotoImage(file = 'D:/программирование/rock, paper, scissors/pictures/shop.png')
+    shop_image = PhotoImage(file = 'C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/shop.png')
 
     rock_image = rock_image_1
     paper_image = paper_image_1
@@ -252,7 +256,8 @@ def result_win():
 
     window_result = Tk() #создаём окно
     window_result.title('Камень, ножницы, бумага') #название
-    window_result.iconbitmap('D:/программирование/rock, paper, scissors/pictures/icon.png') #иконка окна
+    # window_result.iconbitmap('D:/программирование/rock, paper, scissors/pictures/icon.png') #иконка окна
+    window_result.iconbitmap('C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/icon.png') #иконка окна
     window_result.configure(bg = '#B0E0E6', #цвет окна
                         )
     window_result.geometry('350x450+100+20') #750, 400 #где находится окно и размер

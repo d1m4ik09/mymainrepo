@@ -38,7 +38,7 @@ def game_win():
         if balance > 0:
             lbl_balance.config(text = ('Баланс', balance))
         else:
-            balance = 100000
+            balance = 1000
             stop()
 
     def rock():
@@ -52,193 +52,117 @@ def game_win():
 
     def plus():
         global stavka
-        stavka += 10000
+
+        stavka += 5
         if stavka >= balance:
-            stavka -= 10000
+            stavka -= 5
         lbl_stavka.config(text = ('Ставка', stavka))
 
     def minus():
         global stavka
-        stavka -= 10000
+
+        stavka -= 5
         while stavka < 0:
-            stavka += 10000
+            stavka += 1
         lbl_stavka.config(text = ('Ставка', stavka))
-    
+
+    def no_stavka():
+        global stavka_no
+
+        if stavka_no:
+            stavka_no = False
+            stavka = 0
+            lbl_stavka.config(text = ('Ставка', stavka))
+        else:
+            stavka_no = True
+            stavka = 10
+            lbl_stavka.config(text = ('Ставка', stavka))
+
     window_game = Tk()
     window_game.title('Камень, ножницы, бумага')
-    # window_game.iconbitmap('D:/программирование/rock, paper, scissors/pictures/icon.png')
-    window_game.iconbitmap('C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/icon.png')
+    window_game.iconbitmap('C:/Users/1/Downloads/mymainrepo/rock, paper, scissors/picture/icon.png')
+    # window_game.iconbitmap('C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/icon.png')
     window_game.configure(bg = '#B0E0E6',
                         )
     window_game.geometry('900x750+10+20')
     window_game.resizable(False, False)
 
-    # rock_image_1 = PhotoImage(file = 'D:/программирование/rock, paper, scissors/pictures/rock.png')
-    rock_image_1 = PhotoImage(file = 'C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/rock.png')
-    # paper_image_1 = PhotoImage(file = 'D:/программирование/rock, paper, scissors/pictures/paper.png')
-    paper_image_1 = PhotoImage(file = 'C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/paper.png')
-    # scissors_image_1 = PhotoImage(file = 'D:/программирование/rock, paper, scissors/pictures/scissors.png')
-    scissors_image_1 = PhotoImage(file = 'C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/scissors.png')
+    rock_image_1 = PhotoImage(file = 'C:/Users/1/Downloads/mymainrepo/rock, paper, scissors/picture/rock.png')
+    # rock_image_1 = PhotoImage(file = 'C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/rock.png')
+    paper_image_1 = PhotoImage(file = 'C:/Users/1/Downloads/mymainrepo/rock, paper, scissors/picture/paper.png')
+    # paper_image_1 = PhotoImage(file = 'C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/paper.png')
+    scissors_image_1 = PhotoImage(file = 'C:/Users/1/Downloads/mymainrepo/rock, paper, scissors/picture/scissors.png')
+    # scissors_image_1 = PhotoImage(file = 'C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/scissors.png')
 
     rock_image_2 = PhotoImage(file = '')
     paper_image_2 = PhotoImage(file = '')
     scissors_image_2 = PhotoImage(file = '')
     
-    # shop_image = PhotoImage(file = 'D:/программирование/rock, paper, scissors/pictures/shop.png')
-    shop_image = PhotoImage(file = 'C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/shop.png')
+    shop_image = PhotoImage(file = 'C:/Users/1/Downloads/mymainrepo/rock, paper, scissors/picture/shop.png')
+    # shop_image = PhotoImage(file = 'C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/shop.png')
 
     rock_image = rock_image_1
     paper_image = paper_image_1
     scissors_image = scissors_image_1
 
     #Кнопка выбора камня
-    btn_rock = Button(window_game,
-                      image = rock_image,
-                      font = ('Comfortaa'),
-                      bg = '#1E90FF',                  
-                      command = rock
-                      )
+    btn_rock = Button(window_game, image = rock_image, font = ('Comfortaa'), bg = '#1E90FF', command = rock )
 
     #Кнопка выбора бумаги
-    btn_paper = Button(window_game,
-                       image = paper_image,
-                       bg = '#1E90FF',
-                       font = ('Comfortaa'),                   
-                       command = paper,                                       
-                       )
+    btn_paper = Button(window_game, image = paper_image, bg = '#1E90FF', font = ('Comfortaa'), command = paper)
 
     #Кнопка выбора ножниц
-    btn_scissors = Button(window_game,
-                          image = scissors_image,
-                          font = ('Comfortaa'),                      
-                          bg = '#1E90FF',
-                          command = scissors,                                           
-                          )
+    btn_scissors = Button(window_game, image = scissors_image, font = ('Comfortaa'), bg = '#1E90FF', command = scissors)
 
     #кнопка стоп
-    btn_stop = Button(window_game,
-                      text = 'Стоп',
-                      font = ('Comfortaa'),                  
-                      bg = '#1E90FF',                  
-                      command = stop,                   
-                      )
+    btn_stop = Button(window_game, text = 'Стоп', font = ('Comfortaa'), bg = '#1E90FF', command = stop)
     
-    btn_shop = Button(window_game,
-                      image = shop_image,
-                      command = shop,
-                      bg = '#1E90FF',
-                      )
+    btn_shop = Button(window_game, image = shop_image, command = shop, bg = '#1E90FF')
     
-    btn_plus = Button(window_game,
-                      text = '+',
-                      font = ('Comfortaa'),
-                      bg = '#1E90FF',                  
-                      command = plus
-                      )
+    btn_plus = Button(window_game, text = '+', font = ('Comfortaa'), bg = '#1E90FF', command = plus)
     
-    btn_minus = Button(window_game,
-                      text = '-',
-                      font = ('Comfortaa'),
-                      bg = '#1E90FF',                  
-                      command = minus
-                      )
+    btn_minus = Button(window_game, text = '-', font = ('Comfortaa'), bg = '#1E90FF', command = minus)
+    
+    btn_no_stavka = Button(window_game, text = '0', font = ('Comforta'), bg = '#1E90FF', command= no_stavka)
 
     #Что выбрал комп
-    lbl_comp_choice = Label(window_game,
-                            text = 'Выбор компьютера',
-                            bg = '#1E90FF',
-                            font = ('Comfortaa'),                        
-                            )
+    lbl_comp_choice = Label(window_game, text = 'Выбор компьютера', bg = '#1E90FF', font = ('Comfortaa'))
 
     #Что выбрал пользователя
-    lbl_per_choice = Label(window_game,
-                           text = 'Ваш выбор',
-                           bg = '#1E90FF',
-                           font = ('Comfortaa'),                        
-                           )
+    lbl_per_choice = Label(window_game, text = 'Ваш выбор', bg = '#1E90FF', font = ('Comfortaa'))
 
     #счёт
-    lbl_score = Label(window_game,
-                      text = 'Счёт',
-                      bg = '#1E90FF',
-                      font = ('Comfortaa'),                  
-                      )
+    lbl_score = Label(window_game, text = 'Счёт', bg = '#1E90FF', font = ('Comfortaa'))
     
-    lbl_stavka = Label(window_game,
-                       text = ('Cтавка', stavka),
-                       bg = '#1E90FF',
-                       font = ('Comfortaa', 13),
-                       )
+    lbl_stavka = Label(window_game, text = ('Cтавка', stavka), bg = '#1E90FF', font = ('Comfortaa', 13))
     
-    lbl_balance = Label(window_game,
-                        text = ('Баланс', balance),
-                        bg = '#1E90FF',
-                        font = ('Comfortaa'),
-                        )
+    lbl_balance = Label(window_game, text = ('Баланс', balance), bg = '#1E90FF', font = ('Comfortaa'))
 
-    btn_rock.place(x = 100,
-                   y = 400,
-                   width = 200,
-                   height = 200,
-                   )
+    btn_rock.place(x = 100, y = 400, width = 200, height = 200, )
     
-    btn_paper.place(x = 600,
-                    y = 400,
-                    width = 200,
-                    height = 200,
-                    )
+    btn_paper.place(x = 600, y = 400, width = 200, height = 200, )
     
-    btn_scissors.place(x = 350,
-                       y = 400,
-                       width = 200,
-                       height = 200,
-                       )
+    btn_scissors.place(x = 350, y = 400, width = 200, height = 200, )
     
-    btn_stop.place(x = 300,
-                   y = 650,
-                   height = 100,
-                   width = 300,
-                   )
+    btn_stop.place(x = 300, y = 650, height = 100, width = 300, )
     
-    btn_shop.place(height=100,
-                   width=100,
-                   )
+    btn_shop.place(height=100, width=100, )
     
-    btn_plus.place(x = 850,
-                   y = 50,
-                   height= 50,
-                   width = 50)
+    btn_plus.place(x = 850, y = 50, height= 50, width = 50, )
 
-    btn_minus.place(x = 600,
-                    y = 50,
-                    height= 50,
-                    width = 50)
+    btn_minus.place(x = 600, y = 50, height= 50, width = 50, )
     
-    lbl_comp_choice.place(x = 550,
-                          y = 150,
-                          width = 200,
-                          height = 200,
-                          )
+    btn_no_stavka.place(x = 600, height = 50, width = 50, )
     
-    lbl_per_choice.place(x = 150,
-                         y = 150,
-                         width = 200,
-                         height = 200,
-                         )
+    lbl_comp_choice.place(x = 550, y = 150, width = 200, height = 200, )
     
-    lbl_score.place(x = 350,
-                    width = 200,
-                    height = 100,
-                    )
+    lbl_per_choice.place(x = 150, y = 150, width = 200, height = 200, )
     
-    lbl_stavka.place(x = 650,
-                     y = 50,
-                     width= 200,
-                     height=50)
+    lbl_score.place(x = 350, width = 200, height = 100, )
+    
+    lbl_stavka.place(x = 650, y = 50, width= 200, height=50)
 
-    lbl_balance.place(x = 600,
-                      width = 300,
-                      height= 50)
+    lbl_balance.place(x = 650, width = 250, height= 50)
     
     window_game.mainloop()
 
@@ -256,21 +180,15 @@ def result_win():
 
     window_result = Tk() #создаём окно
     window_result.title('Камень, ножницы, бумага') #название
-    # window_result.iconbitmap('D:/программирование/rock, paper, scissors/pictures/icon.png') #иконка окна
-    window_result.iconbitmap('C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/icon.png') #иконка окна
+    window_result.iconbitmap('C:/Users/1/Downloads/mymainrepo/rock, paper, scissors/picture/icon.png') #иконка окна
+    # window_result.iconbitmap('C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/icon.png') #иконка окна
     window_result.configure(bg = '#B0E0E6', #цвет окна
                         )
     window_result.geometry('350x450+100+20') #750, 400 #где находится окно и размер
     window_result.resizable(False, False) #нельзя изменять размеры
 
     #надпись победитель
-    lbl_win = Label(window_result,
-                    text = 'Победитель:',
-                    bg = '#B0E0E6',
-                    font = ('Comfortaa'),
-                    width = 13,
-                    height = 2,
-                    )
+    lbl_win = Label(window_result, text = 'Победитель:', bg = '#B0E0E6', font = ('Comfortaa'), width = 13, height = 2)
     
     if score_comp > score_per:
         winner = 'Компьютер'
@@ -279,32 +197,14 @@ def result_win():
     else:
         winner = 'Пользователь'
 
-    #Имя победителя\комп
-    pri_win = Label(window_result,
-                    bg = '#1E90FF',
-                    font = ('Comfortaa'),
-                    text= winner,
-                    width = 15,
-                    height = 3,
-                    )
+    #Имя победителя/комп
+    pri_win = Label(window_result, bg = '#1E90FF', font = ('Comfortaa'), text= winner, width = 15, height = 3)
 
     #Счёт
-    score = Label(bg = '#1E90FF',
-                text = (str(score_per) + ':' + str(score_comp)),
-                font = ('Comfortaa'),
-                width = 15,
-                height = 3,
-                )
+    score = Label(bg = '#1E90FF', text = (str(score_per) + ':' + str(score_comp)), font = ('Comfortaa'), width = 15, height = 3)
 
     #Новая игра
-    btn_new_game = Button(window_result,
-                    text = 'Новая игра!',
-                    font = ('Comfortaa'),
-                    width = 15,
-                    bg = '#1E90FF',
-                    height = 5,
-                    command = new_game
-                    )
+    btn_new_game = Button(window_result, text = 'Новая игра!', font = ('Comfortaa'), width = 15, bg = '#1E90FF', height = 5, command = new_game)
     
     lbl_win.pack()
     pri_win.pack()
@@ -341,31 +241,24 @@ def shop():
             paper_image = PhotoImage(file = '')
             scissors_image = PhotoImage(file = '')
 
-    btn_pack1 = Button(shop_win,
-                               bg = '#1E90FF',
-                               command = pack_1,
-                               text = 'Первый пак')
+    btn_pack1 = Button(shop_win, bg = '#1E90FF', command = pack_1, text = 'Первый пак')
     
-    btn_pack2 = Button(shop_win,
-                               bg = '#1E90FF',
-                               command = pack_2,
-                               text = 'Второй пак')
+    btn_pack2 = Button(shop_win, bg = '#1E90FF', command = pack_2, text = 'Второй пак')
     
-    btn_pack3 = Button(shop_win,
-                               bg = '#1E90FF',
-                               command = pack_3,
-                               text = 'Третий пак')
+    btn_pack3 = Button(shop_win, bg = '#1E90FF', command = pack_3, text = 'Третий пак')
 
 
 score_per = 0
 score_comp = 0
 
-balance = 100000
+balance = 1000
 stavka = 10
 
 pack1 = False
 pack2 = False
 pack3 = False
+
+stavka_no = False
 
 choice_pos = ['Камень', 'Ножницы', 'Бумага']
 

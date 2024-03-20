@@ -37,7 +37,6 @@ def minus():
 
 window = Tk()
 window.title('Кубы')
-window.iconbitmap('C:\кухарев\-----------------main\казик\Casino.png')
 window.configure(bg = '#B0E0E6',
                  )
 window.geometry('500x500+10+20')

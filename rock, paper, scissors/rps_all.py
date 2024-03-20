@@ -1,6 +1,7 @@
 from random import *
 from tkinter import *
 
+
 def game_win():
     def stop():
         window_game.destroy()
@@ -90,13 +91,17 @@ def game_win():
     window_game.geometry('900x750+10+20')
     window_game.resizable(False, False)
 
-    rock_image_1 = PhotoImage(file = './rock, paper, scissors/picture/rock.png')
-    paper_image_1 = PhotoImage(file = './rock, paper, scissors/picture/paper.png')
-    scissors_image_1 = PhotoImage(file = './rock, paper, scissors/picture/scissors.png')
+    # bg_image=PhotoImage(file = './rock, paper, scissors/picture/bg.png')
+    # background_label = Label(window_game, image = bg_image)
+    # background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-    rock_image_2 = PhotoImage(file = '')
-    paper_image_2 = PhotoImage(file = '')
-    scissors_image_2 = PhotoImage(file = '')
+    rock_image_1 = PhotoImage(file = './rock, paper, scissors/picture/rock_1.png')
+    paper_image_1 = PhotoImage(file = './rock, paper, scissors/picture/paper_1.png')
+    scissors_image_1 = PhotoImage(file = './rock, paper, scissors/picture/scissors_1.png')
+
+    rock_image_3 = PhotoImage(file = './rock, paper, scissors/picture/rock_3.png')
+    paper_image_3 = PhotoImage(file = './rock, paper, scissors/picture/paper_3.png')
+    scissors_image_3 = PhotoImage(file = './rock, paper, scissors/picture/scissors_3.png')
     
     shop_image = PhotoImage(file = './rock, paper, scissors/picture/shop.png')
 
@@ -105,13 +110,13 @@ def game_win():
     scissors_image = scissors_image_1
 
     #Кнопка выбора камня
-    btn_rock = Button(window_game, image = rock_image, font = ('Comfortaa'), bg = '#1E90FF', command = rock )
+    btn_rock = Button(window_game, image = rock_image, font = ('Comfortaa'), borderwidth=0, bg = '#B0E0E6', command = rock )
 
     #Кнопка выбора бумаги
-    btn_paper = Button(window_game, image = paper_image, bg = '#1E90FF', font = ('Comfortaa'), command = paper)
+    btn_paper = Button(window_game, image = paper_image,  font = ('Comfortaa'), borderwidth=0, bg = '#B0E0E6', command = paper)
 
     #Кнопка выбора ножниц
-    btn_scissors = Button(window_game, image = scissors_image, font = ('Comfortaa'), bg = '#1E90FF', command = scissors)
+    btn_scissors = Button(window_game, image = scissors_image, font = ('Comfortaa'), borderwidth=0, bg = '#B0E0E6', command = scissors)
 
     #кнопка стоп
     btn_stop = Button(window_game, text = 'Стоп', font = ('Comfortaa'), bg = '#1E90FF', command = stop)
@@ -219,15 +224,28 @@ def shop():
     shop_win.resizable(False, False)
 
     def pack_1():
-        if pack1_bool == False and balance >= 250:
-            balance -= 250
-            rock_image = PhotoImage(file = '')
-            paper_image = PhotoImage(file = '')
-            scissors_image = PhotoImage(file = '')
+        global rock_image
+        global paper_image
+        global scissors_image
+
+        rock_image_1 = PhotoImage(file = './rock, paper, scissors/picture/rock_1.png')
+        paper_image_1 = PhotoImage(file = './rock, paper, scissors/picture/paper_1.png')
+        scissors_image_1 = PhotoImage(file = './rock, paper, scissors/picture/scissors_1.png')
+
+        rock_image = rock_image_1
+        paper_image = paper_image_1
+        scissors_image = scissors_image_1
 
     def pack_2():
+        global pack2_bool
+        global balance
+        global rock_image
+        global paper_image
+        global scissors_image
+
         if pack2_bool == False and balance >= 500:
             balance -= 500
+            pack2_bool = True
             rock_image = PhotoImage(file = '')
             paper_image = PhotoImage(file = '')
             scissors_image = PhotoImage(file = '')

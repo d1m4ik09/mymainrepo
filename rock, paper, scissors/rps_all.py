@@ -67,39 +67,38 @@ def game_win():
         lbl_stavka.config(text = ('Ставка', stavka))
 
     def no_stavka():
-        global stavka_no
+        global stavka_bool
+        global stavka
 
-        if stavka_no:
-            stavka_no = False
-            stavka = 0
-            lbl_stavka.config(text = ('Ставка', stavka))
-        else:
-            stavka_no = True
+        if stavka_bool:
+            stavka_bool = False
             stavka = 10
             lbl_stavka.config(text = ('Ставка', stavka))
+            btn_minus.config(state = 'active')
+            btn_plus.config(state = 'active')
+        else:
+            stavka_bool = True
+            stavka = 0
+            lbl_stavka.config(text = ('Ставка', stavka))
+            btn_minus.config(state = 'disabled')
+            btn_plus.config(state = 'disabled')
 
     window_game = Tk()
     window_game.title('Камень, ножницы, бумага')
-    window_game.iconbitmap('C:/Users/1/Downloads/mymainrepo/rock, paper, scissors/picture/icon.png')
-    # window_game.iconbitmap('C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/icon.png')
-    window_game.configure(bg = '#B0E0E6',
-                        )
+    window_game.iconbitmap('./rock, paper, scissors/picture/icon.png')
+    window_game.configure(bg = '#B0E0E6')
     window_game.geometry('900x750+10+20')
     window_game.resizable(False, False)
 
-    rock_image_1 = PhotoImage(file = 'C:/Users/1/Downloads/mymainrepo/rock, paper, scissors/picture/rock.png')
-    # rock_image_1 = PhotoImage(file = 'C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/rock.png')
-    paper_image_1 = PhotoImage(file = 'C:/Users/1/Downloads/mymainrepo/rock, paper, scissors/picture/paper.png')
-    # paper_image_1 = PhotoImage(file = 'C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/paper.png')
-    scissors_image_1 = PhotoImage(file = 'C:/Users/1/Downloads/mymainrepo/rock, paper, scissors/picture/scissors.png')
-    # scissors_image_1 = PhotoImage(file = 'C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/scissors.png')
+    rock_image_1 = PhotoImage(file = './rock, paper, scissors/picture/rock.png')
+    paper_image_1 = PhotoImage(file = './rock, paper, scissors/picture/paper.png')
+    scissors_image_1 = PhotoImage(file = './rock, paper, scissors/picture/scissors.png')
 
     rock_image_2 = PhotoImage(file = '')
     paper_image_2 = PhotoImage(file = '')
     scissors_image_2 = PhotoImage(file = '')
     
-    shop_image = PhotoImage(file = 'C:/Users/1/Downloads/mymainrepo/rock, paper, scissors/picture/shop.png')
-    # shop_image = PhotoImage(file = 'C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/shop.png')
+    shop_image = PhotoImage(file = './rock, paper, scissors/picture/shop.png')
 
     rock_image = rock_image_1
     paper_image = paper_image_1
@@ -180,8 +179,7 @@ def result_win():
 
     window_result = Tk() #создаём окно
     window_result.title('Камень, ножницы, бумага') #название
-    window_result.iconbitmap('C:/Users/1/Downloads/mymainrepo/rock, paper, scissors/picture/icon.png') #иконка окна
-    # window_result.iconbitmap('C:/Users/213-16/Downloads/mymainrepo/rock, paper, scissors/picture/icon.png') #иконка окна
+    window_result.iconbitmap('./rock, paper, scissors/picture/icon.png') #иконка окна
     window_result.configure(bg = '#B0E0E6', #цвет окна
                         )
     window_result.geometry('350x450+100+20') #750, 400 #где находится окно и размер
@@ -221,22 +219,22 @@ def shop():
     shop_win.resizable(False, False)
 
     def pack_1():
-        if pack1 == False and balance >= 250:
+        if pack1_bool == False and balance >= 250:
             balance -= 250
             rock_image = PhotoImage(file = '')
             paper_image = PhotoImage(file = '')
             scissors_image = PhotoImage(file = '')
 
     def pack_2():
-        if pack2 == False and balance >= 500:
+        if pack2_bool == False and balance >= 500:
             balance -= 500
             rock_image = PhotoImage(file = '')
             paper_image = PhotoImage(file = '')
             scissors_image = PhotoImage(file = '')
     
     def pack_3():
-        if pack3 == False and balance >= 5:
-            balance -= 5
+        if pack3_bool == False and balance >= 1000:
+            balance -= 1000
             rock_image = PhotoImage(file = '')
             paper_image = PhotoImage(file = '')
             scissors_image = PhotoImage(file = '')
@@ -254,11 +252,11 @@ score_comp = 0
 balance = 1000
 stavka = 10
 
-pack1 = False
-pack2 = False
-pack3 = False
+pack1_bool = False
+pack2_bool = False
+pack3_bool = False
 
-stavka_no = False
+stavka_bool = False
 
 choice_pos = ['Камень', 'Ножницы', 'Бумага']
 

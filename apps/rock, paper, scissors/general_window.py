@@ -7,6 +7,79 @@ def game_win():
         window_game.destroy()
         result_win()
 
+    def shop():
+        def pack_1():
+            global rock_image
+            global paper_image
+            global scissors_image
+
+            rock_image_1 = PhotoImage(file = './apps/rock, paper, scissors/picture/rock_1.png')
+            paper_image_1 = PhotoImage(file = './apps/rock, paper, scissors/picture/paper_1.png')
+            scissors_image_1 = PhotoImage(file = './apps/rock, paper, scissors/picture/scissors_1.png')
+
+            rock_image = rock_image_1
+            paper_image = paper_image_1
+            scissors_image = scissors_image_1
+            window_game.destroy()
+            game_win()
+            shop_win.destroy()
+
+        def pack_2():
+            global pack2_bool
+            global balance
+            global rock_image
+            global paper_image
+            global scissors_image
+
+            rock_image_2 = PhotoImage(file = './apps/rock, paper, scissors/picture/rock_2.png')
+            paper_image_2 = PhotoImage(file = './apps/rock, paper, scissors/picture/paper_2.png')
+            scissors_image_2 = PhotoImage(file = './apps/rock, paper, scissors/picture/scissors_2.png')
+
+            if pack2_bool == False and balance >= 500:
+                balance -= 500
+                pack2_bool = True
+                rock_image = rock_image_2
+                paper_image = paper_image_2
+                scissors_image = scissors_image_2
+                window_game.destroy()
+                game_win()
+                shop_win.destroy()
+
+        def pack_3():
+            global pack3_bool
+            global balance
+            global rock_image
+            global paper_image
+            global scissors_image
+
+            rock_image_3 = PhotoImage(file = './apps/rock, paper, scissors/picture/rock_3.png')
+            paper_image_3 = PhotoImage(file = './apps/rock, paper, scissors/picture/paper_3.png')
+            scissors_image_3 = PhotoImage(file = './apps/rock, paper, scissors/picture/scissors_3.png')
+
+            if pack3_bool == False and balance >= 1000:
+                balance -= 1000
+                rock_image = rock_image_3
+                paper_image = paper_image_3
+                scissors_image = scissors_image_3
+                window_game.destroy()
+                game_win()
+                shop_win.destroy()
+
+        shop_win = Tk()
+        shop_win.title('Магазин')
+        shop_win.geometry('300x300')
+        shop_win.config(bg = '#B0E0E6')
+        shop_win.resizable(False, False)
+
+
+        btn_pack1 = Button(shop_win, bg = '#1E90FF', command = pack_1, text = 'Первый пак')  
+        btn_pack2 = Button(shop_win, bg = '#1E90FF', command = pack_2, text = 'Второй пак')
+        btn_pack3 = Button(shop_win, bg = '#1E90FF', command = pack_3, text = 'Третий пак')
+
+        btn_pack1.place(height=50, width=150)
+        btn_pack2.place(y = 50, height=50, width=150)
+        btn_pack3.place(y = 100, height=50, width=150)
+
     def per_choice(user_choice):
         global score_per
         global score_comp
@@ -68,7 +141,7 @@ def game_win():
         lbl_stavka.config(text = ('Ставка', stavka))
 
     def no_stavka():
-        global stavka_bool
+        global stavka_bool   
         global stavka
 
         if stavka_bool:
@@ -86,7 +159,7 @@ def game_win():
 
     window_game = Tk()
     window_game.title('Камень, ножницы, бумага')
-    window_game.iconbitmap('./rock, paper, scissors/picture/icon.png')
+    window_game.iconbitmap('./apps/rock, paper, scissors/picture/icon.png')
     window_game.configure(bg = '#B0E0E6')
     window_game.geometry('900x750+10+20')
     window_game.resizable(False, False)
@@ -95,15 +168,11 @@ def game_win():
     # background_label = Label(window_game, image = bg_image)
     # background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-    rock_image_1 = PhotoImage(file = './rock, paper, scissors/picture/rock_1.png')
-    paper_image_1 = PhotoImage(file = './rock, paper, scissors/picture/paper_1.png')
-    scissors_image_1 = PhotoImage(file = './rock, paper, scissors/picture/scissors_1.png')
-
-    rock_image_3 = PhotoImage(file = './rock, paper, scissors/picture/rock_3.png')
-    paper_image_3 = PhotoImage(file = './rock, paper, scissors/picture/paper_3.png')
-    scissors_image_3 = PhotoImage(file = './rock, paper, scissors/picture/scissors_3.png')
+    rock_image_1 = PhotoImage(file = './apps/rock, paper, scissors/picture/rock_1.png')
+    paper_image_1 = PhotoImage(file = './apps/rock, paper, scissors/picture/paper_1.png')
+    scissors_image_1 = PhotoImage(file = './apps/rock, paper, scissors/picture/scissors_1.png')
     
-    shop_image = PhotoImage(file = './rock, paper, scissors/picture/shop.png')
+    shop_image = PhotoImage(file = './apps/rock, paper, scissors/picture/shop.png')
 
     rock_image = rock_image_1
     paper_image = paper_image_1
@@ -111,61 +180,39 @@ def game_win():
 
     #Кнопка выбора камня
     btn_rock = Button(window_game, image = rock_image, font = ('Comfortaa'), borderwidth=0, bg = '#B0E0E6', command = rock )
-
     #Кнопка выбора бумаги
     btn_paper = Button(window_game, image = paper_image,  font = ('Comfortaa'), borderwidth=0, bg = '#B0E0E6', command = paper)
-
     #Кнопка выбора ножниц
     btn_scissors = Button(window_game, image = scissors_image, font = ('Comfortaa'), borderwidth=0, bg = '#B0E0E6', command = scissors)
-
     #кнопка стоп
-    btn_stop = Button(window_game, text = 'Стоп', font = ('Comfortaa'), bg = '#1E90FF', command = stop)
-    
-    btn_shop = Button(window_game, image = shop_image, command = shop, bg = '#1E90FF')
-    
-    btn_plus = Button(window_game, text = '+', font = ('Comfortaa'), bg = '#1E90FF', command = plus)
-    
-    btn_minus = Button(window_game, text = '-', font = ('Comfortaa'), bg = '#1E90FF', command = minus)
-    
+    btn_stop = Button(window_game, text = 'Стоп', font = ('Comfortaa'), bg = '#1E90FF', command = stop)   
+    btn_shop = Button(window_game, image = shop_image, command = shop, bg = '#1E90FF')   
+    btn_plus = Button(window_game, text = '+', font = ('Comfortaa'), bg = '#1E90FF', command = plus)   
+    btn_minus = Button(window_game, text = '-', font = ('Comfortaa'), bg = '#1E90FF', command = minus)   
     btn_no_stavka = Button(window_game, text = '0', font = ('Comforta'), bg = '#1E90FF', command= no_stavka)
 
     #Что выбрал комп
     lbl_comp_choice = Label(window_game, text = 'Выбор компьютера', bg = '#1E90FF', font = ('Comfortaa'))
-
     #Что выбрал пользователя
     lbl_per_choice = Label(window_game, text = 'Ваш выбор', bg = '#1E90FF', font = ('Comfortaa'))
-
     #счёт
-    lbl_score = Label(window_game, text = 'Счёт', bg = '#1E90FF', font = ('Comfortaa'))
-    
-    lbl_stavka = Label(window_game, text = ('Cтавка', stavka), bg = '#1E90FF', font = ('Comfortaa', 13))
-    
+    lbl_score = Label(window_game, text = 'Счёт', bg = '#1E90FF', font = ('Comfortaa'))    
+    lbl_stavka = Label(window_game, text = ('Cтавка', stavka), bg = '#1E90FF', font = ('Comfortaa', 13))    
     lbl_balance = Label(window_game, text = ('Баланс', balance), bg = '#1E90FF', font = ('Comfortaa'))
 
-    btn_rock.place(x = 100, y = 400, width = 200, height = 200, )
-    
-    btn_paper.place(x = 600, y = 400, width = 200, height = 200, )
-    
-    btn_scissors.place(x = 350, y = 400, width = 200, height = 200, )
-    
-    btn_stop.place(x = 300, y = 650, height = 100, width = 300, )
-    
-    btn_shop.place(height=100, width=100, )
-    
+    btn_rock.place(x = 100, y = 400, width = 200, height = 200, )   
+    btn_paper.place(x = 600, y = 400, width = 200, height = 200, )   
+    btn_scissors.place(x = 350, y = 400, width = 200, height = 200, )    
+    btn_stop.place(x = 300, y = 650, height = 100, width = 300, )   
+    btn_shop.place(height=100, width=100, )   
     btn_plus.place(x = 850, y = 50, height= 50, width = 50, )
-
-    btn_minus.place(x = 600, y = 50, height= 50, width = 50, )
-    
+    btn_minus.place(x = 600, y = 50, height= 50, width = 50, )  
     btn_no_stavka.place(x = 600, height = 50, width = 50, )
     
-    lbl_comp_choice.place(x = 550, y = 150, width = 200, height = 200, )
-    
-    lbl_per_choice.place(x = 150, y = 150, width = 200, height = 200, )
-    
-    lbl_score.place(x = 350, width = 200, height = 100, )
-    
+    lbl_comp_choice.place(x = 550, y = 150, width = 200, height = 200, )   
+    lbl_per_choice.place(x = 150, y = 150, width = 200, height = 200, )    
+    lbl_score.place(x = 350, width = 200, height = 100, )   
     lbl_stavka.place(x = 650, y = 50, width= 200, height=50)
-
     lbl_balance.place(x = 650, width = 250, height= 50)
     
     window_game.mainloop()
@@ -184,7 +231,7 @@ def result_win():
 
     window_result = Tk() #создаём окно
     window_result.title('Камень, ножницы, бумага') #название
-    window_result.iconbitmap('./rock, paper, scissors/picture/icon.png') #иконка окна
+    window_result.iconbitmap('./apps/rock, paper, scissors/picture/icon.png') #иконка окна
     window_result.configure(bg = '#B0E0E6', #цвет окна
                         )
     window_result.geometry('350x450+100+20') #750, 400 #где находится окно и размер
@@ -216,58 +263,11 @@ def result_win():
 
     window_result.mainloop()
 
-def shop():
-    shop_win = Tk()
-    shop_win.title('Магазин')
-    shop_win.geometry('300x300')
-    shop_win.config(bg = '#B0E0E6')
-    shop_win.resizable(False, False)
-
-    def pack_1():
-        global rock_image
-        global paper_image
-        global scissors_image
-
-        rock_image_1 = PhotoImage(file = './rock, paper, scissors/picture/rock_1.png')
-        paper_image_1 = PhotoImage(file = './rock, paper, scissors/picture/paper_1.png')
-        scissors_image_1 = PhotoImage(file = './rock, paper, scissors/picture/scissors_1.png')
-
-        rock_image = rock_image_1
-        paper_image = paper_image_1
-        scissors_image = scissors_image_1
-
-    def pack_2():
-        global pack2_bool
-        global balance
-        global rock_image
-        global paper_image
-        global scissors_image
-
-        if pack2_bool == False and balance >= 500:
-            balance -= 500
-            pack2_bool = True
-            rock_image = PhotoImage(file = '')
-            paper_image = PhotoImage(file = '')
-            scissors_image = PhotoImage(file = '')
-    
-    def pack_3():
-        if pack3_bool == False and balance >= 1000:
-            balance -= 1000
-            rock_image = PhotoImage(file = '')
-            paper_image = PhotoImage(file = '')
-            scissors_image = PhotoImage(file = '')
-
-    btn_pack1 = Button(shop_win, bg = '#1E90FF', command = pack_1, text = 'Первый пак')
-    
-    btn_pack2 = Button(shop_win, bg = '#1E90FF', command = pack_2, text = 'Второй пак')
-    
-    btn_pack3 = Button(shop_win, bg = '#1E90FF', command = pack_3, text = 'Третий пак')
-
 
 score_per = 0
 score_comp = 0
 
-balance = 1000
+balance = 10000
 stavka = 10
 
 pack1_bool = False

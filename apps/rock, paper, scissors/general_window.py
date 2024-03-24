@@ -1,6 +1,6 @@
 from random import *
 from tkinter import *
-
+from PIL import Image
 
 def game_win():
     def stop_res():
@@ -222,6 +222,9 @@ def result_win():
         window_result.destroy()
         game_win()
 
+    def stop():
+        window_result.destroy()
+
     window_result = Tk() #создаём окно
     window_result.title('Камень, ножницы, бумага') #название
     window_result.iconbitmap('./apps/rock, paper, scissors/picture/icon.png') #иконка окна
@@ -247,10 +250,13 @@ def result_win():
 
     #Новая игра
     btn_new_game = Button(window_result, text = 'Новая игра!', font = ('Comfortaa'), width = 15, bg = '#1E90FF', height = 5, command = new_game)
+
+    btn_stop = Button(window_result, text = 'Выйти', font = ('Comfortaa'), width = 15, bg = '#1E90FF', height = 2, command= stop)
     
     lbl_win.pack()
     pri_win.pack()
     score.pack(pady = 50)
+    btn_stop.pack(pady= 10)
     btn_new_game.pack(side = BOTTOM)
 
     window_result.mainloop()

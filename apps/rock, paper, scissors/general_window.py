@@ -1,6 +1,5 @@
 from random import *
 from tkinter import *
-from PIL import Image
 
 def game_win():
     def stop_res():
@@ -95,13 +94,8 @@ def game_win():
     window_game.configure(bg = '#B0E0E6')
     window_game.geometry('900x750+10+20')
     window_game.resizable(False, False)
-
-    # bg_image=PhotoImage(file = './rock, paper, scissors/picture/bg.png')
-    # background_label = Label(window_game, image = bg_image)
-    # background_label.place(x=0, y=0, relwidth=1, relheight=1)
     
     shop_image = PhotoImage(file = './apps/rock, paper, scissors/picture/shop.png')
-
     rock_image = PhotoImage(file = './apps/rock, paper, scissors/picture/rock_1.png')
     paper_image = PhotoImage(file = './apps/rock, paper, scissors/picture/paper_1.png')
     scissors_image = PhotoImage(file = './apps/rock, paper, scissors/picture/scissors_1.png')
@@ -203,70 +197,7 @@ def shop():
     shop_win.title('Магазин')
     shop_win.geometry('300x300')
     shop_win.config(bg = '#B0E0E6')
-    shop_win.resizable(False, False)
-    btn_pack1 = Button(shop_win, bg = '#1E90FF', command = pack_1, text = 'Первый пак')  
-    btn_pack2 = Button(shop_win, bg = '#1E90FF', command = pack_2, text = 'Второй пак')
-    btn_pack3 = Button(shop_win, bg = '#1E90FF', command = pack_3, text = 'Третий пак')
-    btn_pack1.place(height=50, width=150)
-    btn_pack2.place(y = 50, height=50, width=150)
-    btn_pack3.place(y = 100, height=50, width=150)
-
-def result_win():
-    global score_per
-    global score_comp
-
-    def new_game():
-        global score_per
-        global score_comp
-        score_per, score_comp = 0, 0
-        window_result.destroy()
-        game_win()
-
-    def stop():
-        window_result.destroy()
-
-    window_result = Tk() #создаём окно
-    window_result.title('Камень, ножницы, бумага') #название
-    window_result.iconbitmap('./apps/rock, paper, scissors/picture/icon.png') #иконка окна
-    window_result.configure(bg = '#B0E0E6', #цвет окна
-                        )
-    window_result.geometry('350x450+100+20') #750, 400 #где находится окно и размер
-    window_result.resizable(False, False) #нельзя изменять размеры
-
-    #надпись победитель
-    lbl_win = Label(window_result, text = 'Победитель:', bg = '#B0E0E6', font = ('Comfortaa'), width = 13, height = 2)
-    
-    if score_comp > score_per:
-        winner = 'Компьютер'
-    elif score_comp == score_per:
-        winner = 'Ничья'
-    else:
-        winner = 'Пользователь'
-
-    #Имя победителя/комп
-    pri_win = Label(window_result, bg = '#1E90FF', font = ('Comfortaa'), text= winner, width = 15, height = 3)
-    #Счёт
-    score = Label(bg = '#1E90FF', text = (str(score_per) + ':' + str(score_comp)), font = ('Comfortaa'), width = 15, height = 3)
-
-    #Новая игра
-    btn_new_game = Button(window_result, text = 'Новая игра!', font = ('Comfortaa'), width = 15, bg = '#1E90FF', height = 5, command = new_game)
-
-    btn_stop = Button(window_result, text = 'Выйти', font = ('Comfortaa'), width = 15, bg = '#1E90FF', height = 2, command= stop)
-    
-    lbl_win.pack()
-    pri_win.pack()
-    score.pack(pady = 50)
-    btn_stop.pack(pady= 10)
-    btn_new_game.pack(side = BOTTOM)
-
-    window_result.mainloop()
-
-
-score_per = 0
-score_comp = 0
-
-balance = 10000
-stavka = 10
+ 
 
 pack1_bool = False
 pack2_bool = False
@@ -275,5 +206,7 @@ pack3_bool = False
 stavka_bool = False
 
 choice_pos = ['Камень', 'Ножницы', 'Бумага']
+
+wins = [0, 1, 1, 2, 0, 0, 2, 2 ]
 
 game_win()

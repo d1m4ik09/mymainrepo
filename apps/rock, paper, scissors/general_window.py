@@ -71,7 +71,7 @@ def game_win():
             stavka += 1
         lbl_stavka.config(text = ('Ставка', stavka))
 
-    def no_stavka():
+    def no_stavka(): #Режим игры без ставок
         global stavka_bool   
         global stavka
 

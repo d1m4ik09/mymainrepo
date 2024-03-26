@@ -11,6 +11,9 @@ def game_win():
         window_game.destroy()
         shop()
 
+    def save():
+        pass
+
     def per_choice(user_choice):
         global score_per
         global score_comp
@@ -103,10 +106,6 @@ def game_win():
     window_game.configure(bg = '#B0E0E6')
     window_game.geometry('900x750+10+20')
     window_game.resizable(False, False)
-
-    # bg_image=PhotoImage(file = './rock, paper, scissors/picture/bg.png')
-    # background_label = Label(window_game, image = bg_image)
-    # background_label.place(x=0, y=0, relwidth=1, relheight=1)
     
     shop_image = PhotoImage(file = './apps/rock, paper, scissors/picture/shop.png')
 
@@ -126,6 +125,7 @@ def game_win():
     btn_plus = Button(window_game, text = '+', font = ('Comfortaa'), bg = '#1E90FF', command = plus)   
     btn_minus = Button(window_game, text = '-', font = ('Comfortaa'), bg = '#1E90FF', command = minus)   
     btn_no_stavka = Button(window_game, text = '0', font = ('Comforta'), bg = '#1E90FF', command= no_stavka)
+    btn_save = Button(window_game, text = 'Save', font = ('Comforta'), bg = '#1E90FF', command= save)
 
     entry = Entry(window_game, font = ('Comforta'))
 
@@ -149,6 +149,7 @@ def game_win():
     btn_plus.place(x = 850, y = 50, height= 50, width = 50, )
     btn_minus.place(x = 600, y = 50, height= 50, width = 50, )  
     btn_no_stavka.place(x = 600, height = 50, width = 50, )
+    btn_save.place(x = 425, y = 190, width=50)
     
     lbl_comp_choice.place(x = 550, y = 150, width = 200, height = 200, )   
     lbl_per_choice.place(x = 150, y = 150, width = 200, height = 200, )    
@@ -284,6 +285,7 @@ score_comp = 0
 balance = 10000
 stavka = 10
 streak = 0
+max_streak = 0
 
 pack1_bool = False
 pack2_bool = False

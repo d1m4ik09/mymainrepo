@@ -16,7 +16,7 @@ def game_win():
         global score_comp
         global stavka
         global balance
-
+        global streak
 
         comp_choice = choice(choice_pos)
         lbl_per_choice.config(text= user_choice)
@@ -26,17 +26,24 @@ def game_win():
             lbl_score.config(text = (str(score_per) + ':' + str(score_comp)),
                             bg = '#808080')
         elif user_choice == choice_pos[choice_pos.index(comp_choice) - 1]:
+            streak += 1
+            if streak >= 5:
+                balance += (round(streak / 100 * stavka) + stavka)
+            else:
+                balance += stavka
             score_per += 1
-            balance += stavka
             lbl_score.config(text = (str(score_per) + ':' + str(score_comp)),
                             bg = '#008000')
+            lbl_streak.config(text = ('Стрик', streak))
             lbl_balance.config(text = ('Баланс', balance))
         else:
             score_comp += 1
             balance -= stavka
+            streak = 0
             lbl_score.config(text = (str(score_per) + ':' + str(score_comp)),
                             bg = '#B22222')
-              
+            lbl_streak.config(text = ('Стрик', streak))
+
         if stavka > balance:
             stavka = balance
             lbl_stavka.config(text = ('Ставка', stavka))
@@ -45,6 +52,7 @@ def game_win():
             lbl_balance.config(text = ('Баланс', balance))
         else:
             balance = 1000
+            streak = 0
             stop_res()
 
     def rock():
@@ -127,6 +135,7 @@ def game_win():
     lbl_score = Label(window_game, text = 'Счёт', bg = '#1E90FF', font = ('Comfortaa'))    
     lbl_stavka = Label(window_game, text = ('Cтавка', stavka), bg = '#1E90FF', font = ('Comfortaa', 13))    
     lbl_balance = Label(window_game, text = ('Баланс', balance), bg = '#1E90FF', font = ('Comfortaa'))
+    lbl_streak = Label(window_game, text = ('Стрик', streak), bg = '#1E90FF', font = ('Comfortaa'))
 
     btn_rock.place(x = 100, y = 400, width = 200, height = 200, )   
     btn_paper.place(x = 600, y = 400, width = 200, height = 200, )   
@@ -139,9 +148,10 @@ def game_win():
     
     lbl_comp_choice.place(x = 550, y = 150, width = 200, height = 200, )   
     lbl_per_choice.place(x = 150, y = 150, width = 200, height = 200, )    
-    lbl_score.place(x = 350, width = 200, height = 100, )   
+    lbl_score.place(x = 350, width = 200, height = 50, )   
     lbl_stavka.place(x = 650, y = 50, width= 200, height=50)
     lbl_balance.place(x = 650, width = 250, height= 50)
+    lbl_streak.place(x = 350, y = 60, height= 50, width= 200)
     
     window_game.mainloop()
 
@@ -267,6 +277,7 @@ score_comp = 0
 
 balance = 10000
 stavka = 10
+streak = 0
 
 pack1_bool = False
 pack2_bool = False

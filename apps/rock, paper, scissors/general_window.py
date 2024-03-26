@@ -28,7 +28,7 @@ def game_win():
         elif user_choice == choice_pos[choice_pos.index(comp_choice) - 1]:
             streak += 1
             if streak >= 5:
-                balance += (round(streak / 100 * stavka) + stavka)
+                balance += (round(streak / 1000 * balance) + stavka)
             else:
                 balance += stavka
             score_per += 1
@@ -127,6 +127,8 @@ def game_win():
     btn_minus = Button(window_game, text = '-', font = ('Comfortaa'), bg = '#1E90FF', command = minus)   
     btn_no_stavka = Button(window_game, text = '0', font = ('Comforta'), bg = '#1E90FF', command= no_stavka)
 
+    entry = Entry(window_game, font = ('Comforta'))
+
     #Что выбрал комп
     lbl_comp_choice = Label(window_game, text = 'Выбор компьютера', bg = '#1E90FF', font = ('Comfortaa'))
     #Что выбрал пользователя
@@ -136,6 +138,8 @@ def game_win():
     lbl_stavka = Label(window_game, text = ('Cтавка', stavka), bg = '#1E90FF', font = ('Comfortaa', 13))    
     lbl_balance = Label(window_game, text = ('Баланс', balance), bg = '#1E90FF', font = ('Comfortaa'))
     lbl_streak = Label(window_game, text = ('Стрик', streak), bg = '#1E90FF', font = ('Comfortaa'))
+
+    entry.place(x = 400, y = 150, width = 100)
 
     btn_rock.place(x = 100, y = 400, width = 200, height = 200, )   
     btn_paper.place(x = 600, y = 400, width = 200, height = 200, )   
@@ -152,6 +156,8 @@ def game_win():
     lbl_stavka.place(x = 650, y = 50, width= 200, height=50)
     lbl_balance.place(x = 650, width = 250, height= 50)
     lbl_streak.place(x = 350, y = 60, height= 50, width= 200)
+
+    name = entry.get()
     
     window_game.mainloop()
 

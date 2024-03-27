@@ -18,14 +18,14 @@ def game_win():
         with open('./apps/rock, paper, scissors/information.txt', 'a') as file:
             if score_per == 0:
                 stat = "{} {} {} {} {} {} {}\n".format(name, balance, max_streak, 0, 
-                                                       pack1_bool, pack2_bool, pack3_bool)
+                                                       pack1_bool, pack2_bool, pack3_bool, pack4_bool)
             else:
                 stat = "{} {} {} {} {} {} {}\n".format(name, balance, max_streak, round((score_comp + score_per) / score_per * 100), 
-                                                       pack1_bool, pack2_bool, pack3_bool)
+                                                       pack1_bool, pack2_bool, pack3_bool, pack4_bool)
             file.write(stat)
 
     def per_choice(user_choice):
-        global score_per, score_comp, stavka, balance, streak, max_streak, balance, streak, pack1_bool, pack2_bool, pack3_bool
+        global score_per, score_comp, stavka, balance, streak, max_streak, balance, streak, pack1_bool, pack2_bool, pack3_bool, pack4_bool
 
         name = entry.get()
         comp_choice = choice(choice_pos)
@@ -35,7 +35,7 @@ def game_win():
         if name == 'test09qwe12':
             balance = 999999
             streak = 15
-            pack3_bool = pack2_bool = pack1_bool = True
+            pack4_bool = pack3_bool = pack2_bool = pack1_bool = True
             streak += 1
             if streak >= 5:
                 balance += (round(streak / 1000 * balance) + stavka)
@@ -170,6 +170,10 @@ def game_win():
         rock_image = PhotoImage(file = './apps/rock, paper, scissors/picture/rock_3.png')
         paper_image = PhotoImage(file = './apps/rock, paper, scissors/picture/paper_3.png')
         scissors_image = PhotoImage(file = './apps/rock, paper, scissors/picture/scissors_3.png')
+    elif cur_pack == 'pack4':
+        rock_image = PhotoImage(file = './apps/rock, paper, scissors/picture/rock_4.png')
+        paper_image = PhotoImage(file = './apps/rock, paper, scissors/picture/paper_4.png')
+        scissors_image = PhotoImage(file = './apps/rock, paper, scissors/picture/scissors_4.png')
 
     btn_rock = Button(window_game, image = rock_image, font = ('Comfortaa'), borderwidth=0, bg = '#B0E0E6', command = rock )
     btn_paper = Button(window_game, image = paper_image,  font = ('Comfortaa'), borderwidth=0, bg = '#B0E0E6', command = paper)
@@ -248,18 +252,34 @@ def shop():
             shop_win.destroy()
             game_win()
 
+    def pack_4():
+        global pack4_bool, balance, cur_pack
+
+        if pack4_bool == False and balance >= 1500:
+            balance -= 1500
+            pack4_bool = True
+            cur_pack = 'pack4'
+            shop_win.destroy()
+            game_win()
+        else:
+            cur_pack = 'pack4'
+            shop_win.destroy()
+            game_win()
+
     shop_win = Tk()
     shop_win.title('Магазин')
-    shop_win.geometry('300x300')
+    shop_win.geometry('150x200')
     shop_win.iconbitmap('./apps/rock, paper, scissors/picture/icon_shop.ico')
     shop_win.config(bg = '#B0E0E6')
     shop_win.resizable(False, False)
     btn_pack1 = Button(shop_win, bg = '#1E90FF', command = pack_1, text = 'Первый пак')  
     btn_pack2 = Button(shop_win, bg = '#1E90FF', command = pack_2, text = 'Второй пак')
     btn_pack3 = Button(shop_win, bg = '#1E90FF', command = pack_3, text = 'Третий пак')
+    btn_pack4 = Button(shop_win, bg = '#1E90FF', command = pack_4, text = 'Четвёртый пак')
     btn_pack1.place(height=50, width=150)
     btn_pack2.place(y = 50, height=50, width=150)
     btn_pack3.place(y = 100, height=50, width=150)
+    btn_pack4.place(y = 150, height=50, width=150)
 
 def result_win():
     global score_per, score_comp
@@ -315,6 +335,7 @@ max_streak = 0
 pack1_bool = True
 pack2_bool = False
 pack3_bool = False
+pack4_bool = False
 stavka_bool = False
 
 cur_pack = 'pack1'

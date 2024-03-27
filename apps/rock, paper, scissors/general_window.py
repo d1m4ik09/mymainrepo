@@ -1,5 +1,6 @@
 from random import *
 from tkinter import *
+from PIL import Image
 
 def game_win():
     def stop_res():
@@ -11,6 +12,7 @@ def game_win():
         shop()
 
     def save():
+<<<<<<< HEAD
         name = entry.get()
         if name == '':
             name = 'guest'
@@ -18,6 +20,9 @@ def game_win():
             stat = "{} {} {} {} {} {} {}\n".format(name, balance, max_streak, round((score_comp + score_per) / score_per * 100), pack1_bool, pack2_bool, pack3_bool)
             file.write(stat)
         file.close()
+=======
+        pass
+>>>>>>> 45720eb117f6c756a2b0e8974c18b30690459e0a
 
     def per_choice(user_choice):
         global score_per
@@ -30,6 +35,7 @@ def game_win():
         lbl_per_choice.config(text= user_choice)
         lbl_comp_choice.config(text = comp_choice)
 
+<<<<<<< HEAD
         # if user_choice == comp_choice:
         #     lbl_score.config(text = (str(score_per) + ':' + str(score_comp)),
         #                     bg = '#808080')
@@ -38,6 +44,15 @@ def game_win():
             if streak >= 5:
                 if stavka != 0:
                     balance += (round(streak / 1000 * balance) + stavka)
+=======
+        if user_choice == comp_choice:
+            lbl_score.config(text = (str(score_per) + ':' + str(score_comp)),
+                            bg = '#808080')
+        elif user_choice == choice_pos[choice_pos.index(comp_choice) - 1]:
+            streak += 1
+            if streak >= 5:
+                balance += (round(streak / 1000 * balance) + stavka)
+>>>>>>> 45720eb117f6c756a2b0e8974c18b30690459e0a
             else:
                 balance += stavka
             score_per += 1
@@ -45,6 +60,7 @@ def game_win():
                             bg = '#008000')
             lbl_streak.config(text = ('Стрик', streak))
             lbl_balance.config(text = ('Баланс', balance))
+<<<<<<< HEAD
         # else:
         #     score_comp += 1
         #     balance -= stavka
@@ -52,6 +68,15 @@ def game_win():
         #     lbl_score.config(text = (str(score_per) + ':' + str(score_comp)),
         #                     bg = '#B22222')
         #     lbl_streak.config(text = ('Стрик', streak))
+=======
+        else:
+            score_comp += 1
+            balance -= stavka
+            streak = 0
+            lbl_score.config(text = (str(score_per) + ':' + str(score_comp)),
+                            bg = '#B22222')
+            lbl_streak.config(text = ('Стрик', streak))
+>>>>>>> 45720eb117f6c756a2b0e8974c18b30690459e0a
 
         if stavka > balance:
             stavka = balance
@@ -163,6 +188,11 @@ def game_win():
     lbl_stavka.place(x = 650, y = 50, width= 200, height=50)
     lbl_balance.place(x = 650, width = 250, height= 50)
     lbl_streak.place(x = 350, y = 60, height= 50, width= 200)
+<<<<<<< HEAD
+=======
+
+    name = entry.get()
+>>>>>>> 45720eb117f6c756a2b0e8974c18b30690459e0a
     
     window_game.mainloop()
 

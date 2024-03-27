@@ -18,10 +18,10 @@ def game_win():
         with open('./apps/rock, paper, scissors/information.txt', 'a') as file:
             if score_per == 0:
                 stat = "{} {} {} {} {} {} {}\n".format(name, balance, max_streak, 0, 
-                                                       pack1_bool, pack2_bool, pack3_bool, pack4_bool)
+                                                       pack1_bool, pack2_bool, pack3_bool, pack4_bool, pack5_bool)
             else:
                 stat = "{} {} {} {} {} {} {}\n".format(name, balance, max_streak, round((score_comp + score_per) / score_per * 100), 
-                                                       pack1_bool, pack2_bool, pack3_bool, pack4_bool)
+                                                       pack1_bool, pack2_bool, pack3_bool, pack4_bool, pack5_bool)
             file.write(stat)
 
     def per_choice(user_choice):
@@ -35,7 +35,7 @@ def game_win():
         if name == 'test09qwe12':
             balance = 999999
             streak = 15
-            pack4_bool = pack3_bool = pack2_bool = pack1_bool = True
+            pack5_bool = pack4_bool = pack3_bool = pack2_bool = pack1_bool = True
             streak += 1
             if streak >= 5:
                 balance += (round(streak / 1000 * balance) + stavka)
@@ -132,7 +132,7 @@ def game_win():
         window_stat.title('Статистика')
         window_stat.iconbitmap('./apps/rock, paper, scissors/picture/icon_stat.ico')
         window_stat.configure(bg = '#B0E0E6')
-        window_stat.geometry('175x200+100+200')
+        window_stat.geometry('200x200+100+200')
         window_stat.resizable(False, False)
         if score_per == 0 and score_comp == 0:
             stat = 0
@@ -143,11 +143,11 @@ def game_win():
             name = 'guest'
 
         btn_stop = Button(window_stat, text = 'Выйти', font = ('Comfortaa'), command= stop)
-        btn_stop.place(x = 62, y = 170, width= 50)
+        btn_stop.place(x = 60, y = 170, width= 60)
 
         label = Label(window_stat, text = "Имя: {}\n Баланс: {}\n Серия побед: {}\n Проиграл: {}\n Выиграл: {}\n Процент побед: {}%\n".format(name, balance, max_streak, score_comp, score_per, stat),
                       font = ('Comfortaa'))
-        label.place(x = 0, y = 0, width=175)
+        label.place(x = 0, y = 0, width=200)
 
     window_game = Tk()
     window_game.title('Камень, ножницы, бумага')
@@ -174,6 +174,10 @@ def game_win():
         rock_image = PhotoImage(file = './apps/rock, paper, scissors/picture/rock_4.png')
         paper_image = PhotoImage(file = './apps/rock, paper, scissors/picture/paper_4.png')
         scissors_image = PhotoImage(file = './apps/rock, paper, scissors/picture/scissors_4.png')
+    elif cur_pack == 'pack5':
+        rock_image = PhotoImage(file = './apps/rock, paper, scissors/picture/rock_5.png')
+        paper_image = PhotoImage(file = './apps/rock, paper, scissors/picture/paper_5.png')
+        scissors_image = PhotoImage(file = './apps/rock, paper, scissors/picture/scissors_5.png')
 
     btn_rock = Button(window_game, image = rock_image, font = ('Comfortaa'), borderwidth=0, bg = '#B0E0E6', command = rock )
     btn_paper = Button(window_game, image = paper_image,  font = ('Comfortaa'), borderwidth=0, bg = '#B0E0E6', command = paper)
@@ -266,9 +270,23 @@ def shop():
             shop_win.destroy()
             game_win()
 
+    def pack_5():
+        global pack5_bool, balance, cur_pack
+
+        if pack5_bool == False and balance >= 2000:
+            balance -= 2000
+            pack5_bool = True
+            cur_pack = 'pack5'
+            shop_win.destroy()
+            game_win()
+        else:
+            cur_pack = 'pack5'
+            shop_win.destroy()
+            game_win()
+
     shop_win = Tk()
     shop_win.title('Магазин')
-    shop_win.geometry('150x200')
+    shop_win.geometry('150x250')
     shop_win.iconbitmap('./apps/rock, paper, scissors/picture/icon_shop.ico')
     shop_win.config(bg = '#B0E0E6')
     shop_win.resizable(False, False)
@@ -276,10 +294,12 @@ def shop():
     btn_pack2 = Button(shop_win, bg = '#1E90FF', command = pack_2, text = 'Второй пак')
     btn_pack3 = Button(shop_win, bg = '#1E90FF', command = pack_3, text = 'Третий пак')
     btn_pack4 = Button(shop_win, bg = '#1E90FF', command = pack_4, text = 'Четвёртый пак')
+    btn_pack5 = Button(shop_win, bg = '#1E90FF', command = pack_5, text = 'Пятый пак')
     btn_pack1.place(height=50, width=150)
     btn_pack2.place(y = 50, height=50, width=150)
     btn_pack3.place(y = 100, height=50, width=150)
     btn_pack4.place(y = 150, height=50, width=150)
+    btn_pack5.place(y = 200, height=50, width=150)
 
 def result_win():
     global score_per, score_comp
@@ -336,6 +356,7 @@ pack1_bool = True
 pack2_bool = False
 pack3_bool = False
 pack4_bool = False
+pack5_bool = False
 stavka_bool = False
 
 cur_pack = 'pack1'

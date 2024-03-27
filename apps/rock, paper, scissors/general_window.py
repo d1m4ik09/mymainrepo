@@ -130,7 +130,7 @@ def game_win():
             window_stat.destroy()
         window_stat = Tk()
         window_stat.title('Статистика')
-        window_stat.iconbitmap('./apps/rock, paper, scissors/picture/icon.png')
+        window_stat.iconbitmap('./apps/rock, paper, scissors/picture/icon_stat.ico')
         window_stat.configure(bg = '#B0E0E6')
         window_stat.geometry('175x200+100+200')
         window_stat.resizable(False, False)
@@ -145,12 +145,13 @@ def game_win():
         btn_stop = Button(window_stat, text = 'Выйти', font = ('Comfortaa'), command= stop)
         btn_stop.place(x = 62, y = 170, width= 50)
 
-        label = Label(window_stat, text = "Имя: {}\n Баланс: {}\n Серия побед: {}\n Проиграл: {}\n Выиграл: {}\n Процент побед: {}%\n".format(name, balance, max_streak, score_comp, score_per, stat), font = ('Comfortaa'))
+        label = Label(window_stat, text = "Имя: {}\n Баланс: {}\n Серия побед: {}\n Проиграл: {}\n Выиграл: {}\n Процент побед: {}%\n".format(name, balance, max_streak, score_comp, score_per, stat),
+                      font = ('Comfortaa'))
         label.place(x = 0, y = 0, width=175)
 
     window_game = Tk()
     window_game.title('Камень, ножницы, бумага')
-    window_game.iconbitmap('./apps/rock, paper, scissors/picture/icon.png')
+    window_game.iconbitmap('./apps/rock, paper, scissors/picture/icon_game.ico')
     window_game.configure(bg = '#B0E0E6')
     window_game.geometry('900x750+10+20')
     window_game.resizable(False, False)
@@ -250,6 +251,7 @@ def shop():
     shop_win = Tk()
     shop_win.title('Магазин')
     shop_win.geometry('300x300')
+    shop_win.iconbitmap('./apps/rock, paper, scissors/picture/icon_shop.ico')
     shop_win.config(bg = '#B0E0E6')
     shop_win.resizable(False, False)
     btn_pack1 = Button(shop_win, bg = '#1E90FF', command = pack_1, text = 'Первый пак')  
@@ -273,7 +275,7 @@ def result_win():
 
     window_result = Tk() #создаём окно
     window_result.title('Результаты') #название
-    window_result.iconbitmap('./apps/rock, paper, scissors/picture/icon.png') #иконка окна
+    window_result.iconbitmap('./apps/rock, paper, scissors/picture/icon_game.ico') #иконка окна
     window_result.configure(bg = '#B0E0E6', #цвет окна
                         )
     window_result.geometry('350x450+100+20') #750, 400 #где находится окно и размер

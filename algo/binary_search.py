@@ -13,4 +13,4 @@ def binary_search(list, target):
             else:
                 left = mid + 1
 
-print(binary_search([5, 6, 7, 14, 16, 19, 25, 28, 30, 32, 34, 38, 42, 47, 50], 32))
+print(binary_search([5, 6, 7, 14, 16, 19, 25, 28, 30, 32, 34, 38, 42, 47, 50], 28))

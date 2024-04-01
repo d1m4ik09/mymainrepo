@@ -38,17 +38,17 @@ def game_win():
         elif name == '' or password == '':
             lbl_mistake.config(text = 'Введите имя\nили пароль')
         else:
-            lbl_mistake.config(text = ('Баланс', balance))        
+            lbl_mistake.config(text = '')        
             with open('./apps/rock, paper, scissors/information.txt', 'r+') as file:  
                 for i in file.readlines():
                     i = list(i.split())
                     if name == i[0] and password == i[1]:
                         reg = True
-                        lbl_mistake.config('Данные\nсохранены')
-                        if reg_bool:
+                        lbl_mistake.config(text = 'Данные\nсохранены')
+                        if reg_bool == True:
                             del file[i]
                             if score_per == 0:
-                                new = "{} {} {} {} {} {} {} {} {} \n".format(name, password, balance, max_streak, 0, 
+                                new = "{} {} {} {} {} {} {} {} {} \n".format(name, password, balance, max_streak, '0', 
                                                                              pack2_bool, pack3_bool, pack4_bool, pack5_bool)
                             else:
                                 new = "{} {} {} {} {} {} {} {} {} \n".format(name, password, balance, max_streak, round(100 * score_per /(score_comp + score_per)), 

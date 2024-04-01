@@ -11,35 +11,67 @@ def game_win():
         shop()
 
     def stop_stat():
-        name = entry.get()
+        name = entry_name.get()
         window_game.destroy()
         stat_win(name)
 
+    def pull(i):
+        global balance, max_streak, pack2_bool, pack3_bool, pack4_bool, pack5_bool
+        with open('./apps/rock, paper, scissors/information.txt', 'r') as file:
+            balance = file[i[2]]
+            max_streak = file[i[3]]
+            pack2_bool = file[i[5]]
+            pack3_bool = file[i[6]]
+            pack4_bool = file[i[7]]
+            pack5_bool = file[i[8]]
+            lbl_mistake.config(text = 'Данные\nперенесены')
+
     def save():
-        name = entry.get()
-        if name == '':
-            name = 'guest'
-        
-        with open('./apps/rock, paper, scissors/information.txt', 'a') as file:
-            if score_per == 0:
-                stat = "{} {} {} {} {} {} {} {} {}\n".format(name, balance, max_streak, 0, 
-                                                       pack1_bool, pack2_bool, pack3_bool, pack4_bool, pack5_bool)
-            else:
-                stat = "{} {} {} {} {} {} {} {} {}\n".format(name, balance, max_streak, round(100 * score_per /(score_comp + score_per)), 
-                                                       pack1_bool, pack2_bool, pack3_bool, pack4_bool, pack5_bool)
-            file.write(stat)
+        global reg_bool, pack5_bool, pack4_bool, pack3_bool, pack2_bool, balance
+        name = entry_name.get()
+        password = entry_password.get()
+        reg = False
+        if name == 'fullpack12' and password == 'qwerty': #Покупает весь магаз и баланс 999999 для крутых
+            balance = 999999
+            pack5_bool = pack4_bool = pack3_bool = pack2_bool = True
+            lbl_balance.config(text = ('Баланс', balance))
+        elif name == '' or password == '':
+            lbl_mistake.config(text = 'Введите имя\nили пароль')
+        else:
+            lbl_mistake.config(text = ('Баланс', balance))        
+            with open('./apps/rock, paper, scissors/information.txt', 'r+') as file:  
+                for i in file.readlines():
+                    i = list(i.split())
+                    if name == i[0] and password == i[1]:
+                        reg = True
+                        lbl_mistake.config('Данные\nсохранены')
+                        if reg_bool:
+                            del file[i]
+                            if score_per == 0:
+                                new = "{} {} {} {} {} {} {} {} {} \n".format(name, password, balance, max_streak, 0, 
+                                                                             pack2_bool, pack3_bool, pack4_bool, pack5_bool)
+                            else:
+                                new = "{} {} {} {} {} {} {} {} {} \n".format(name, password, balance, max_streak, round(100 * score_per /(score_comp + score_per)), 
+                                                                             pack2_bool, pack3_bool, pack4_bool, pack5_bool)
+                            file.write(new)
+                            break
+                        else:
+                            reg_bool = True
+                            pull(i)
+                            break
+                if reg == False:
+                    reg_bool = True
+                    new = "{} {} {} {} {} {} {} {} {} \n".format(name, password, balance, max_streak, 0, 
+                                                                      pack2_bool, pack3_bool, pack4_bool, pack5_bool)
+                    file.write(new)
+                    lbl_mistake.config(text = 'Данные\nвнесены')
 
     def per_choice(user_choice):
-        global score_per, score_comp, stavka, balance, streak, max_streak, balance, streak, pack1_bool, pack2_bool, pack3_bool, pack4_bool, pack5_bool
+        global score_per, score_comp, stavka, balance, streak, max_streak, balance, streak
 
         comp_choice = choice(choice_pos)
         lbl_per_choice.config(text= user_choice)
         lbl_comp_choice.config(text = comp_choice)
-
-        name = entry.get()
-        if name == 'fullpack12':
-            balance = 999999
-            pack5_bool = pack4_bool = pack3_bool = pack2_bool = pack1_bool = True
 
         if user_choice == comp_choice:
             lbl_score.config(text = (str(score_per) + ':' + str(score_comp)),
@@ -64,16 +96,14 @@ def game_win():
             lbl_score.config(text = (str(score_per) + ':' + str(score_comp)),
                                 bg = '#B22222')
             lbl_streak.config(text = ('Стрик', streak))
+            lbl_balance.config(text = ('Баланс', balance))
 
         if stavka > balance:
             stavka = balance
             lbl_stavka.config(text = ('Ставка', stavka))
 
-        if balance > 0:
-            lbl_balance.config(text = ('Баланс', balance))
-        else:
+        if balance <= 0:
             balance = 1000
-            streak = 0
             stop_res()
 
     def rock():
@@ -126,7 +156,7 @@ def game_win():
         window_stat.title('Статистика')
         window_stat.iconbitmap('./apps/rock, paper, scissors/picture/icon_stat.ico')
         window_stat.configure(bg = '#B0E0E6')
-        window_stat.geometry('210x200+100+200')
+        window_stat.geometry('210x200+0+0') #+100+200
         window_stat.resizable(False, False)
  
         if name == '':
@@ -152,7 +182,6 @@ def game_win():
 
     shop_image = PhotoImage(file = './apps/rock, paper, scissors/picture/shop.png')
     stat_image = PhotoImage(file = './apps/rock, paper, scissors/picture/stat.png')
-
     rock_image = PhotoImage(file = './apps/rock, paper, scissors/picture/rock_1.png')
     paper_image = PhotoImage(file = './apps/rock, paper, scissors/picture/paper_1.png')
     scissors_image = PhotoImage(file = './apps/rock, paper, scissors/picture/scissors_1.png')
@@ -184,8 +213,9 @@ def game_win():
     btn_no_stavka = Button(window_game, text = '0', font = ('Comforta'), bg = '#1E90FF', command= no_stavka)
     btn_save = Button(window_game, text = 'Save', font = ('Comforta'), bg = '#1E90FF', command= save)
     btn_stat = Button(window_game, image = stat_image, font = ('Comfortaa'), bg = '#1E90FF', command = stop_stat)
-
-    entry = Entry(window_game, font = ('Comforta'), justify= CENTER)
+   
+    entry_name = Entry(window_game, font = ('Comforta', 15), justify= CENTER)
+    entry_password = Entry(window_game, font = ('Comforta', 15), justify= CENTER)
 
     lbl_comp_choice = Label(window_game, text = 'Выбор компьютера', bg = '#1E90FF', font = ('Comfortaa'))
     lbl_per_choice = Label(window_game, text = 'Ваш выбор', bg = '#1E90FF', font = ('Comfortaa'))
@@ -193,18 +223,20 @@ def game_win():
     lbl_stavka = Label(window_game, text = ('Cтавка', stavka), bg = '#1E90FF', font = ('Comfortaa', 13))    
     lbl_balance = Label(window_game, text = ('Баланс', balance), bg = '#1E90FF', font = ('Comfortaa'))
     lbl_streak = Label(window_game, text = ('Стрик', streak), bg = '#1E90FF', font = ('Comfortaa'))
+    lbl_mistake = Label(window_game, text = '', bg = '#B0E0E6', font = ('Comfortaa'), foreground= 'red', justify= CENTER)
 
-    entry.place(x = 400, y = 150, width = 100)
+    entry_name.place(x = 400, y = 150, width = 100)
+    entry_password.place(x = 400, y = 180, width=100)
 
     btn_rock.place(x = 100, y = 400, width = 200, height = 200, )   
     btn_paper.place(x = 600, y = 400, width = 200, height = 200, )   
     btn_scissors.place(x = 350, y = 400, width = 200, height = 200, )    
-    btn_stop.place(x = 300, y = 650, height = 100, width = 300, )   
+    btn_stop.place(x = 300, y = 650, height = 100, width = 300, )
     btn_shop.place(height=100, width=100, )   
     btn_plus.place(x = 850, y = 50, height= 50, width = 50, )
     btn_minus.place(x = 600, y = 50, height= 50, width = 50, )  
     btn_no_stavka.place(x = 600, height = 50, width = 50, )
-    btn_save.place(x = 400, y = 190, width=100)
+    btn_save.place(x = 400, y = 220, width=100)
     btn_stat.place(y = 650, width=100, height= 100)
     
     lbl_comp_choice.place(x = 550, y = 150, width = 200, height = 200, )   
@@ -213,6 +245,7 @@ def game_win():
     lbl_stavka.place(x = 650, y = 50, width= 200, height=50)
     lbl_balance.place(x = 650, width = 250, height= 50)
     lbl_streak.place(x = 350, y = 60, height= 50, width= 200)
+    lbl_mistake.place(x = 375, y = 270, width = 150, height = 80)
     
     window_game.mainloop()
 
@@ -232,8 +265,11 @@ def shop():
             cur_pack = 'pack2'
             shop_win.destroy()
             game_win()
-        else:
+        elif pack2_bool == True:
             cur_pack = 'pack2'
+            shop_win.destroy()
+            game_win()
+        else:
             shop_win.destroy()
             game_win()
 
@@ -246,8 +282,11 @@ def shop():
             cur_pack = 'pack3'
             shop_win.destroy()
             game_win()
+        elif pack3_bool == True:
+            cur_pack = 'pack3'
+            shop_win.destroy()
+            game_win()
         else:
-            cur_pack = 'pack3'  
             shop_win.destroy()
             game_win()
 
@@ -260,8 +299,11 @@ def shop():
             cur_pack = 'pack4'
             shop_win.destroy()
             game_win()
-        else:
+        elif pack4_bool == True:
             cur_pack = 'pack4'
+            shop_win.destroy()
+            game_win()
+        else:
             shop_win.destroy()
             game_win()
 
@@ -274,8 +316,11 @@ def shop():
             cur_pack = 'pack5'
             shop_win.destroy()
             game_win()
-        else:
+        elif pack5_bool == True:
             cur_pack = 'pack5'
+            shop_win.destroy()
+            game_win()
+        else:
             shop_win.destroy()
             game_win()
 
@@ -300,8 +345,10 @@ def result_win():
     global score_per, score_comp
 
     def new_game():
-        global score_per, score_comp, streak, max_streak
-        score_per = score_comp = streak = max_streak = 0
+        global score_per, score_comp, streak, reg_bool, balance
+        score_per = score_comp = streak =  0
+        reg_bool = False
+        balance = 1000
         window_result.destroy()
         game_win()
 
@@ -339,10 +386,9 @@ def result_win():
 
     window_result.mainloop()
 
-
 score_per = 0
 score_comp = 0
-balance = 10000
+balance = 1000
 stavka = 10
 streak = 0
 max_streak = 0
@@ -353,7 +399,7 @@ pack3_bool = False
 pack4_bool = False
 pack5_bool = False
 stavka_bool = False
-name_bool = False
+reg_bool = False
 
 cur_pack = 'pack1'
 

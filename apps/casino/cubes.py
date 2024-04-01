@@ -11,7 +11,7 @@ def throw():
     global stavka
     per_choice = choice_num.get()
     comp_choice1 = randint(1, 6)
-    lbl_comp_choice.config(text = ('Выбор компьютера:', str(comp_choice1)))
+    lbl_comp_choice.config(text = "Выбор компьютера: {}".format(comp_choice1))
     if comp_choice1 == int(per_choice):
         money += stavka
         window.config(bg = '#008000')

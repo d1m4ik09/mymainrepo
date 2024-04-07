@@ -12,7 +12,7 @@ def rand_ID():
 def inf_stud(number):
     numbers = [str(i) for i in range(1, 21)]
     if number in numbers:
-        for _ in range(1, int(number) + 1):
+        for _ in range(int(number)):
             print('Центр успеха')
             students.append(input('Имя: '))
             lessons.append(input('Курс: '))
@@ -28,8 +28,8 @@ def inf_stud(number):
 
 
 def inf(word):
-    while word != 'фин':
-        if word == 'доп':
+    while word != 'ф':
+        if word == 'д':
             num_stud = input('Число учеников(до 20):')
             inf_stud(num_stud)
         elif word == 'qwerty':
@@ -40,7 +40,7 @@ def inf(word):
             print('Группа:', group[prom.index(word)])
         else:
             print('Данные не внесены')
-        word = input('Ваш ID("фин"-закончить, "доп"-дополнить): ')
+        word = input('Ваш ID("ф"-закончить, "д"-дополнить): ')
         print()
     print('Готово')
 
@@ -53,5 +53,5 @@ group = []
 num_stud = input('Число учеников(до 20):')
 inf_stud(num_stud)
 
-init = input('ID ученика или ("Фин"-закончить, "Доп"-дополнить):')
+init = input('ID ученика или ("ф"-закончить, "д"-дополнить): ')
 inf(init)

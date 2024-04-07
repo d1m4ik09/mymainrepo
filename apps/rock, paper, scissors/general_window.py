@@ -148,7 +148,7 @@ def game_win():
     window_game = Tk()
     window_game.title('Камень, ножницы, бумага')
     window_game.iconbitmap('./apps/rock, paper, scissors/picture/icon_game.ico')
-    window_game.configure(bg = '#B0E0E6')
+    window_game.configure(bg = '#808080')
     window_game.geometry('900x750+10+20')
     window_game.resizable(False, False)
 
@@ -174,9 +174,9 @@ def game_win():
         paper_image = PhotoImage(file = './apps/rock, paper, scissors/picture/paper_5.png')
         scissors_image = PhotoImage(file = './apps/rock, paper, scissors/picture/scissors_5.png')
 
-    btn_rock = Button(window_game, image = rock_image, bg = '#B0E0E6', borderwidth=0, command = rock )
-    btn_paper = Button(window_game, image = paper_image, bg = '#B0E0E6', borderwidth=0, command = paper)
-    btn_scissors = Button(window_game, image = scissors_image, bg = '#B0E0E6', borderwidth=0, command = scissors)                      
+    btn_rock = Button(window_game, image = rock_image, bg = '#808080', borderwidth=0, command = rock )
+    btn_paper = Button(window_game, image = paper_image, bg = '#808080', borderwidth=0, command = paper)
+    btn_scissors = Button(window_game, image = scissors_image, bg = '#808080', borderwidth=0, command = scissors)                      
     btn_stop = Button(window_game, text = 'Стоп', font = ('Comfortaa'), bg = '#1E90FF', command = stop_res)   
     btn_shop = Button(window_game, image = shop_image, bg = '#1E90FF', command = stop_shop)   
     btn_plus = Button(window_game, text = '+', font = ('Comfortaa'), bg = '#1E90FF', command = plus)   
@@ -187,13 +187,13 @@ def game_win():
     entry_name = Entry(window_game, font = ('Comforta', 15), justify= CENTER)
     entry_password = Entry(window_game, font = ('Comforta', 15), justify= CENTER)
 
-    lbl_comp_choice = Label(window_game, image = rock_image, bg = '#B0E0E6')
-    lbl_per_choice = Label(window_game, image = rock_image, bg = '#B0E0E6')
+    lbl_comp_choice = Label(window_game, image = rock_image, bg = '#808080')
+    lbl_per_choice = Label(window_game, image = rock_image, bg = '#808080')
     lbl_score = Label(window_game, text = 'Счёт', bg = '#1E90FF', font = ('Comfortaa'))    
     lbl_stavka = Label(window_game, text = ('Cтавка', stavka), bg = '#1E90FF', font = ('Comfortaa', 13))    
     lbl_balance = Label(window_game, text = ('Баланс', balance), bg = '#1E90FF', font = ('Comfortaa'))
     lbl_streak = Label(window_game, text = ('Стрик', streak), bg = '#1E90FF', font = ('Comfortaa'))
-    lbl_mistake = Label(window_game, text = '', bg = '#B0E0E6', font = ('Comfortaa'), foreground= 'red', justify= CENTER)
+    lbl_mistake = Label(window_game, text = '', bg = '#808080', font = ('Comfortaa'), foreground= 'red', justify= CENTER)
 
     entry_name.place(x = 400, y = 150, width = 100)
     entry_password.place(x = 400, y = 180, width=100)
@@ -297,7 +297,7 @@ def shop():
     shop_win.title('Магазин')
     shop_win.geometry('150x250')
     shop_win.iconbitmap('./apps/rock, paper, scissors/picture/icon_shop.ico')
-    shop_win.config(bg = '#B0E0E6')
+    shop_win.config(bg = '#808080')
     shop_win.resizable(False, False)
     btn_pack1 = Button(shop_win, bg = '#1E90FF', command = pack_1, text = 'Первый пак')  
     btn_pack2 = Button(shop_win, bg = '#1E90FF', command = pack_2, text = 'Второй пак (500)')
@@ -326,7 +326,7 @@ def menu_win():
     window_result = Tk() #создаём окно
     window_result.title('Меню') #название
     window_result.iconbitmap('./apps/rock, paper, scissors/picture/icon_game.ico') #иконка окна
-    window_result.configure(bg = '#B0E0E6')
+    window_result.configure(bg = '#808080')
     window_result.geometry('140x100+100+20') #750, 400 #где находится окно и размер
     window_result.resizable(False, False) #нельзя изменять размеры
 

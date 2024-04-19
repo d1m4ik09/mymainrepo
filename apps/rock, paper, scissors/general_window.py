@@ -1,5 +1,6 @@
 from random import *
 from tkinter import *
+from PIL import Image
 
 def game_win():
     def stop_res():
@@ -10,58 +11,15 @@ def game_win():
         window_game.destroy()
         shop()
 
-    # def pull(i):
-    #     global balance, pack2_bool, pack3_bool, pack4_bool, pack5_bool
-    #     with open('./apps/rock, paper, scissors/information.txt', 'r') as file:
-    #         balance = file[i[2]]
-    #         pack2_bool = file[i[4]]
-    #         pack3_bool = file[i[5]]
-    #         pack4_bool = file[i[6]]
-    #         pack5_bool = file[i[7]]
-    #         lbl_mistake.config(text = 'Данные\nперенесены')
-
-    # def save():
-    #     global reg_bool, pack5_bool, pack4_bool, pack3_bool, pack2_bool, balance
-    #     name = entry_name.get()
-    #     password = entry_password.get()
-    #     reg = False
-    #     if name == 'fullpack12' and password == 'qwerty': #Покупает весь магаз и баланс 999999 для крутых
-    #         balance = 999999
-    #         pack5_bool = pack4_bool = pack3_bool = pack2_bool = True
-    #         lbl_balance.config(text = ('Баланс', balance))
-    #     elif name == '' or password == '':
-    #         lbl_mistake.config(text = 'Введите имя\nили пароль')
-    #     else:
-    #         lbl_mistake.config(text = '')        
-    #         with open('./apps/rock, paper, scissors/information.txt', 'r+') as file:  
-    #             for i in file.readlines():
-    #                 i = list(i.split())
-    #                 if name == i[0] and password == i[1]:
-    #                     reg = True
-    #                     lbl_mistake.config(text = 'Данные\nсохранены')
-    #                     if reg_bool:
-    #                         del file[i]
-    #                         if score_per == 0:
-    #                             new = "{} {} {} {} {} {} {} {} \n".format(name, password, balance, 0, 
-    #                                                                          pack2_bool, pack3_bool, pack4_bool, pack5_bool)
-    #                         else:
-    #                             new = "{} {} {} {} {} {} {} {} \n".format(name, password, balance, round(100 * score_per /(score_comp + score_per)), 
-    #                                                                          pack2_bool, pack3_bool, pack4_bool, pack5_bool)
-    #                         file.write(new)
-    #                         break
-    #                     else:
-    #                         reg_bool = True
-    #                         pull(i)
-    #                         break
-    #             if reg == False:
-    #                 reg_bool = True
-    #                 new = "{} {} {} {} {} {} {} {} \n".format(name, password, balance, 0, 
-    #                                                                   pack2_bool, pack3_bool, pack4_bool, pack5_bool)
-    #                 file.write(new)
-    #                 lbl_mistake.config(text = 'Данные\nвнесены')
-
     def per_choice(user_choice):
-        global score_per, score_comp, bet, balance, streak, balance, streak
+        global score_per, score_comp, bet, balance, streak, balance, streak, test
+
+        if test:
+            global pack5_bool, pack4_bool, pack3_bool, pack2_bool, balance
+            balance = 999999
+            pack5_bool = pack4_bool = pack3_bool = pack2_bool = True
+            test = False
+            lbl_balance.config(text = ('Баланс', balance))
 
         wti = {'r' : rock_image,
               'p' : paper_image,
@@ -182,10 +140,6 @@ def game_win():
     btn_plus = Button(window_game, text = '+', font = ('Comfortaa'), bg = '#1E90FF', command = plus)   
     btn_minus = Button(window_game, text = '-', font = ('Comfortaa'), bg = '#1E90FF', command = minus)   
     btn_no_bet = Button(window_game, text = '0', font = ('Comforta'), bg = '#1E90FF', command= no_bet)
-    # btn_save = Button(window_game, text = 'Save', font = ('Comforta'), bg = '#1E90FF', command= save)
-   
-    # entry_name = Entry(window_game, font = ('Comforta', 15), justify= CENTER)
-    # entry_password = Entry(window_game, font = ('Comforta', 15), justify= CENTER)
 
     lbl_comp_choice = Label(window_game, image = rock_image, bg = '#808080')
     lbl_per_choice = Label(window_game, image = rock_image, bg = '#808080')
@@ -193,28 +147,23 @@ def game_win():
     lbl_bet = Label(window_game, text = ('Cтавка', bet), bg = '#1E90FF', font = ('Comfortaa', 13))    
     lbl_balance = Label(window_game, text = ('Баланс', balance), bg = '#1E90FF', font = ('Comfortaa'))
     lbl_streak = Label(window_game, text = ('Стрик', streak), bg = '#1E90FF', font = ('Comfortaa'))
-    lbl_mistake = Label(window_game, text = '', bg = '#808080', font = ('Comfortaa'), foreground= 'red', justify= CENTER)
-    # entry_name.place(x = 400, y = 150, relwidth = 100)
-    # entry_password.place(x = 400, y = 180, relwidth=100)
 
-    btn_rock.place(x = 100, y = 400, relwidth = 0.222222, relheight = 0.266666, )   
-    btn_paper.place(x = 600, y = 400, relwidth = 0.222222, relheight = 0.266666, )   
-    btn_scissors.place(x = 350, y = 400, relwidth = 0.222222, relheight = 0.266666, )    
-    btn_stop.place(x = 300, y = 650, relwidth = 0.333333, relheight = 0.133333, )
+    btn_rock.place(relx = 0.111111, rely = 0.533333, relwidth = 0.222222, relheight = 0.266666, )   
+    btn_paper.place(relx = 0.666666, rely = 0.533333, relwidth = 0.222222, relheight = 0.266666, )   
+    btn_scissors.place(relx = 0.388888, rely = 0.533333, relwidth = 0.222222, relheight = 0.266666, )    
+    btn_stop.place(relx = 0.333333, rely = 0.866666, relwidth = 0.333333, relheight = 0.133333, )
     btn_shop.place(relheight = 0.133333, relwidth = 0.111111 )   
-    btn_plus.place(x = 850, y = 50, relheight = 0.066666, relwidth = 0.055555, )
-    btn_minus.place(x = 600, y = 50, relheight = 0.066666, relwidth = 0.055555, )  
-    btn_no_bet.place(x = 600, relheight = 0.066666, relwidth = 0.055555, )
-    # btn_save.place(x = 400, y = 220, relwidth=100)
+    btn_plus.place(relx = 0.944444, rely = 0.066666, relheight = 0.066666, relwidth = 0.055555, )
+    btn_minus.place(relx = 0.666666, rely = 0.066666, relheight = 0.066666, relwidth = 0.055555, )  
+    btn_no_bet.place(relx = 0.666666, relheight = 0.066666, relwidth = 0.055555, )
     
-    lbl_comp_choice.place(x = 550, y = 150, relwidth = 0.222222, relheight = 0.266666, )   
-    lbl_per_choice.place(x = 150, y = 150, relwidth = 0.222222, relheight = 0.266666, )    
-    lbl_score.place(x = 350, relwidth = 0.222222, relheight = 0.066666, )   
-    lbl_bet.place(x = 650, y = 50, relwidth= 0.222222, relheight = 0.066666)
-    lbl_balance.place(x = 650, relwidth = 0.277777, relheight = 0.066666)
-    lbl_streak.place(x = 350, y = 60, relheight= 0.066666, relwidth = 0.222222)
-    # lbl_mistake.place(x = 375, y = 270, relwidth = 150, relheight = 80)
-    
+    lbl_comp_choice.place(relx = 0.611111, rely = 0.166666, relwidth = 0.222222, relheight = 0.266666, )   
+    lbl_per_choice.place(relx = 0.2, rely = 0.166666, relwidth = 0.222222, relheight = 0.266666, )    
+    lbl_score.place(relx = 0.388888, relwidth = 0.222222, relheight = 0.066666, )   
+    lbl_bet.place(relx = 0.722222, rely = 0.066666, relwidth= 0.222222, relheight = 0.066666)
+    lbl_balance.place(relx = 0.722222, relwidth = 0.277777, relheight = 0.066666)
+    lbl_streak.place(relx = 0.388888, rely = 0.08, relheight= 0.066666, relwidth = 0.222222)
+
     window_game.mainloop()
 
 def shop():
@@ -311,11 +260,12 @@ def shop():
 
 def menu_win():
     def new_game():
-        global score_per, score_comp, streak, reg_bool, balance, pack2_bool, pack3_bool, pack4_bool, pack5_bool
+        global score_per, score_comp, streak, bet, balance, pack2_bool, pack3_bool, pack4_bool, pack5_bool, cur_pack
         score_per = score_comp = streak =  0
         pack2_bool = pack3_bool = pack4_bool = pack5_bool = False
-        reg_bool = False
         balance = 1000
+        bet  = 10
+        cur_pack = ''
         window_result.destroy()
         game_win()
 
@@ -329,8 +279,8 @@ def menu_win():
     window_result.geometry('140x100+100+20') #750, 400 #где находится окно и размер
     window_result.resizable(False, False) #нельзя изменять размеры
 
-    btn_new_game = Button(window_result, text = 'Новая игра!', font = ('Comfortaa'), relwidth = 15, bg = '#1E90FF', relheight = 2, command = new_game)
-    btn_stop = Button(window_result, text = 'Выйти', font = ('Comfortaa'), relwidth = 15, bg = '#1E90FF', relheight = 2, command= stop)
+    btn_new_game = Button(window_result, text = 'Новая игра!', font = ('Comfortaa'), width = 15, bg = '#1E90FF', height = 2, command = new_game)
+    btn_stop = Button(window_result, text = 'Выйти', font = ('Comfortaa'), width = 15, bg = '#1E90FF', height = 2, command= stop)
 
     btn_stop.pack()
     btn_new_game.pack(side = BOTTOM)
@@ -343,15 +293,14 @@ balance = 1000
 bet = 10
 streak = 0
 
-pack1_bool = True
 pack2_bool = False
 pack3_bool = False
 pack4_bool = False
 pack5_bool = False
 bet_bool = False
-reg_bool = False
+test = False
 
-cur_pack = 'pack1'
+cur_pack = ''
 
 choice_pos = ['r', 's', 'p']
 

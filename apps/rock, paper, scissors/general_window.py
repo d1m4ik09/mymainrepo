@@ -302,6 +302,6 @@ test = False
 
 cur_pack = ''
 
-choice_pos = ['r', 's', 'p']
+choice_pos = ('r', 's', 'p')
 
 game_win()

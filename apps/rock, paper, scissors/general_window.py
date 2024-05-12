@@ -298,7 +298,7 @@ pack3_bool = False
 pack4_bool = False
 pack5_bool = False
 bet_bool = False
-test = False
+test = True
 
 cur_pack = ''
 

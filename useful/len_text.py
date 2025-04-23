@@ -15,7 +15,12 @@
 
 
 print("Введите текст:")
-text = input()
+
+text = ''
+a = input()
+while a != 'стоп':
+    text+= a
+    a = input()
 
 count_symbols = len(text)
 

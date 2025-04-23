@@ -12,4 +12,5 @@ def Sieve_of_Eratosthenes(n):
         i += 1
 
     primes = [i for i in primes if i != 0]
+    
     return primes

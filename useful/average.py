@@ -1,16 +1,17 @@
-a = int(input())
-count = len(str(a))
-sm = sum(int(i) for i in str(a))
+goal = float(input('Цель -->'))
+grades = int(input('Ваши оценки -->'))
 
+count = len(str(grades))
+sm = sum(int(i) for i in str(grades))
 avg = sm / count
-count_fives = 0
+fives = 0
 
-print('средний балл:', round(avg, 2))
+print(f'средний балл: {avg}')
 
-while avg < 4.6:
-    sm += 5
+while avg < goal:
     count += 1
-    count_fives += 1
+    sm += 5
+    fives += 1
     avg = sm / count
 
-print('Кол-во пятерок до 4.60 и выше:', count_fives)
+print(f'Кол-во пятерок до {goal} и выше: {fives}')
